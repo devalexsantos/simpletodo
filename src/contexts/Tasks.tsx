@@ -17,7 +17,7 @@ export function TasksContextProvider({children}: {children: ReactNode}) {
             {
                 title: "Minha primeira tarefa",
                 done: false,
-                time: "15",
+                time: 15,
             },
         ];
     });
