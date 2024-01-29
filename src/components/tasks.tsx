@@ -66,7 +66,7 @@ export function Tasks() {
           </TabsContent>
           <TabsContent value="complete">
             <div className="flex flex-col gap-3">
-              <DeleteAllTasks />
+              {finishedTasks.length > 0 && <DeleteAllTasks />}
               {tasks.map((task, index) => {
                 if (task.done === true) {
                   return (
