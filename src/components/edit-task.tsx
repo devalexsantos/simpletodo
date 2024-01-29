@@ -11,11 +11,12 @@ import { useContext, useState } from "react";
 import { TasksContext } from "@/contexts/Tasks";
 import { Task } from "@/types/Task";
 
-export function EditTask({task, index}: {task: Task, index: number}){
+export function EditTask({task}: {task: Task}){
     const [open, setOpen] = useState(false);
     const { handleEditTask } = useContext(TasksContext)
 
     const formSchema = z.object({
+        id: z.string(),
         title: z.string(),
         time: z.coerce.number().min(5, {
             message: "A tarefa deve conter no mínimo 05 minutos."
@@ -28,6 +29,7 @@ export function EditTask({task, index}: {task: Task, index: number}){
     const {register, handleSubmit, formState: { errors }} = useForm<TaskForm>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            id: task.id,
             title: task.title,
             time: task.time,
             done: task.done
@@ -35,7 +37,7 @@ export function EditTask({task, index}: {task: Task, index: number}){
     })
 
     const handleEditForm = (values: Task) => {
-        handleEditTask(values, index)
+        handleEditTask(values)
         setOpen(false)
     }
 

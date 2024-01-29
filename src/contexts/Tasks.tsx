@@ -3,10 +3,10 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 
 interface TasksContextProps {
     tasks: Task[]
-    handleAddTask: (values: Task)=> void
-    handleTitleClicked: (id: string)=> void
-    handleEditTask: (task: Task, index: number)=> void
-    handleDeleteTask: (index: number) => void
+    handleAddTask: (values: Task) => void
+    handleTitleClicked: (id: string) => void
+    handleEditTask: (data: Task) => void
+    handleDeleteTask: (data: Task) => void
 }
 
 export const TasksContext = createContext({} as TasksContextProps)
@@ -17,7 +17,7 @@ export function TasksContextProvider({children}: {children: ReactNode}) {
         const storedTasks = localStorage.getItem("tasks-fastodo");
         return storedTasks ? JSON.parse(storedTasks) : [
             {
-                id: 0,
+                id: "0",
                 title: "Minha primeira tarefa",
                 done: false,
                 time: 15,
@@ -41,18 +41,15 @@ export function TasksContextProvider({children}: {children: ReactNode}) {
         setTasks(updatedTasks)
     }
 
-    const handleEditTask = (task: Task, index: number) => {
-        const updatedTasks = [...tasks];
-        const updatedTask = { ...updatedTasks[index] };
-        updatedTask.title  = task.title;
-        updatedTask.time = task.time;
-        updatedTasks[index] = updatedTask
-        setTasks(updatedTasks)
+    const handleEditTask = (data: Task) => {
+        const newTasks = tasks.map(task => 
+            task.id === data.id ? { ...task, title: data.title, time: data.time } : task)
+            setTasks(newTasks)
+
     }
 
-    const handleDeleteTask = (index: number) => {
-        const updatedTasks = [...tasks];
-        const newTasks =  updatedTasks.splice(index, 1)
+    const handleDeleteTask = (data: Task) => {
+        const newTasks = tasks.filter(item => item.id !== data.id);
         setTasks(newTasks)
     }
 

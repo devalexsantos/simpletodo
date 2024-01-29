@@ -5,9 +5,14 @@ import { Button } from "./ui/button";
 import { useContext, useState } from "react";
 import { TasksContext } from "@/contexts/Tasks";
 
-export function DeleteTask({task, index}: {task: Task, index: number}){
+export function DeleteTask({task}: {task: Task}){
     const { handleDeleteTask } = useContext(TasksContext)
     const [open, setOpen] = useState(false);
+
+    const handleFormDelete = (task: Task) => {
+        handleDeleteTask(task)
+        setOpen(false)
+    }
 
     return(
         <Dialog open={open} onOpenChange={setOpen}>
@@ -22,7 +27,7 @@ export function DeleteTask({task, index}: {task: Task, index: number}){
                 <div className="flex flex-col gap-4">
                     <span className="font-bold">"{task.title}"</span>
                     <div className="flex gap-3">
-                        <Button className="flex-1" variant="destructive" onClick={()=>handleDeleteTask(index)}>Deletar</Button>
+                        <Button className="flex-1" variant="destructive" onClick={()=>handleFormDelete(task)}>Deletar</Button>
                         <Button className="flex-1" variant="outline" onClick={()=>setOpen(false)}>Cancelar</Button>
                     </div>
                 </div>

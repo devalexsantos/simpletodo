@@ -11,8 +11,6 @@ import { DeleteTask } from "./delete-task";
 export function Tasks() {
     const { tasks, handleTitleClicked } = useContext(TasksContext)
 
-    console.log(tasks)
-
     return (
         <div className="container px-8 flex flex-col gap-8">
             <AddTasks />
@@ -31,8 +29,8 @@ export function Tasks() {
                                     <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(task.id)}/>
                                     <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(task.id)}>{task.title}</span>
                                     <span className="text-muted-foreground">{task.time}min</span>
-                                    <EditTask task={task} index={index} />
-                                    <DeleteTask task={task} index={index} />
+                                    <EditTask task={task} />
+                                    <DeleteTask task={task} />
                                 </div>
                             )
                             } 
