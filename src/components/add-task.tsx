@@ -61,8 +61,8 @@ export function AddTasks(){
                     </DialogHeader>
                     <form onSubmit={handleSubmit(handleAddForm)} className="flex flex-col gap-3">
 
-                        <Label htmlFor="task-title">Tempo previsto:</Label>
-                        <Textarea id="task-title" {...register('title')} required/>
+                        <Label htmlFor="task-title">Descrição:</Label>
+                        <Textarea id="task-title" {...register('title')} required placeholder="Descreva aqui sua tarefa de forma resumida."/>
 
                         <Label htmlFor="task-time">Tempo previsto <strong>(em minutos)</strong>:</Label>
                         <Input id="task-time" type="number" min={5} {...register('time')}/>
