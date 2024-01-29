@@ -1,12 +1,12 @@
-import { Button } from "./components/ui/button";
+import { Header } from "./components/layout/header"
 
 export function App() {
   return(
-    <>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    <Button>Botao</Button>
-    </>
+    <div className="max-w-4xl m-auto">
+    <Header />
+    <div className="container p-8">
+      <h1>Hellow</h1>
+    </div>
+    </div>
   )
 }
