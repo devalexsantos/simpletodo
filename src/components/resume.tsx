@@ -1,4 +1,4 @@
-export function Resume(){
+export function Resume(){    
     return(
         <div className="container p-8 flex gap-4 flex-wrap">
             <div className="flex flex-1 h-[150px] flex-col gap-3 items-center justify-center rounded border">
