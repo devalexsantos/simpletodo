@@ -8,6 +8,29 @@ export function Resume(){
     const filteresTasks = tasks.filter(tasks => tasks.done === false)
     
     const totalTime = filteresTasks.reduce((total, item) => total + item.time, 0);
+
+    function formatTime(time: number) {
+        if (time >= 60) {
+          const hours = Math.floor(time / 60);
+          const minutes = time % 60;
+          return(
+            <div className="flex items-end gap-2">
+            <div>
+                {hours}
+                <span className="text-xl">h</span>
+            </div>
+            {minutes !== 0 && <span className="text-xl">{minutes}min</span>}
+            </div>
+          )
+        } else {
+            return(
+                <div className="flex items-end gap-1">
+                {time}
+                <span className="text-xl">min</span>
+                </div>
+              )
+        }
+      }
     
     return(
         <div className="container p-8 flex gap-4 flex-wrap">
@@ -25,8 +48,8 @@ export function Resume(){
                     Tempo total:
                 </span>
                 <div className="flex items-end gap-2">
-                    <span className="text-5xl font-bold">{totalTime}</span>
-                    <span className="text-xl">min</span>
+                    <span className="text-5xl font-bold flex">{formatTime(totalTime)}</span>
+                    
                 </div>
             </div>
         </div>

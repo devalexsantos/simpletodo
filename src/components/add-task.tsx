@@ -60,7 +60,7 @@ export function AddTasks(){
                         <Label htmlFor="task-title">Tempo previsto:</Label>
                         <Textarea id="task-title" {...register('title')} required/>
 
-                        <Label htmlFor="task-time">Tempo previsto:</Label>
+                        <Label htmlFor="task-time">Tempo previsto <strong>(em minutos)</strong>:</Label>
                         <Input id="task-time" type="number" min={5} {...register('time')}/>
                         <span className="text-red-600">{errors.time && errors.time.message}</span>
                         <Button className="flex items-center gap-2" type="submit">
