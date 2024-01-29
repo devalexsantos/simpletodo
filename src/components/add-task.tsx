@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { TasksContext } from "@/contexts/Tasks";
 import { Task } from "@/types/Task";
+import { v4 as uuidv4 } from 'uuid';
 
 export function AddTasks(){
     const [open, setOpen] = useState(false);
@@ -17,6 +18,7 @@ export function AddTasks(){
     const { handleAddTask } = useContext(TasksContext)
 
     const formSchema = z.object({
+        id: z.string(),
         title: z.string(),
         time: z.coerce.number().min(5, {
             message: "A tarefa deve conter no mínimo 05 minutos."
@@ -29,6 +31,7 @@ export function AddTasks(){
     const {reset, register, handleSubmit, formState: { errors }} = useForm<TaskForm>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            id: "",
             title: "",
             time: 5,
             done: false
@@ -36,7 +39,8 @@ export function AddTasks(){
     })
 
     const handleAddForm = (values: Task) => {
-        handleAddTask(values)
+        const id = uuidv4()
+        handleAddTask({...values, id})
         reset()
         setOpen(false)
     }

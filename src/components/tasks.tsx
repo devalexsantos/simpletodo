@@ -5,10 +5,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AddTasks } from "./add-task";
 import { TasksContext } from "@/contexts/Tasks";
 import { EditTask } from "./edit-task";
+import { DeleteTask } from "./delete-task";
 
 
 export function Tasks() {
     const { tasks, handleTitleClicked } = useContext(TasksContext)
+
+    console.log(tasks)
 
     return (
         <div className="container px-8 flex flex-col gap-8">
@@ -25,11 +28,11 @@ export function Tasks() {
                             if(task.done === false){
                             return (
                                 <div key={index} className="rounded border flex justify-between items-center p-4 gap-4">
-                                    <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(index)}/>
-                                    <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(index)}>{task.title}</span>
+                                    <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(task.id)}/>
+                                    <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(task.id)}>{task.title}</span>
                                     <span className="text-muted-foreground">{task.time}min</span>
                                     <EditTask task={task} index={index} />
-                                    <Trash size={18} className="text-muted-foreground hover:text-current"/>
+                                    <DeleteTask task={task} index={index} />
                                 </div>
                             )
                             } 
@@ -42,8 +45,8 @@ export function Tasks() {
                                 if(task.done === true){
                                 return (
                                     <div key={index} className="rounded border flex justify-between items-center p-4 gap-4">
-                                        <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(index)}/>
-                                        <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(index)}>{task.title}</span>
+                                        <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(task.id)}/>
+                                        <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(task.id)}>{task.title}</span>
                                         <span className="text-muted-foreground">{task.time}min</span>
                                         <Edit size={18} className="text-muted-foreground hover:text-current"/>
                                         <Trash size={18} className="text-muted-foreground hover:text-current"/>
