@@ -11,6 +11,7 @@ An easy online task manager.
 - [X] It must be possible to delete a task
 - [X] It should be possible to see completed tasks
 - [X] It must be possible to view the total quantity and total time of tasks to be done
+- [X] It must be possible delete all finished tasks
 
 ## Non-functional requirements
 - [X] Task data must be saved in the browser's local storage

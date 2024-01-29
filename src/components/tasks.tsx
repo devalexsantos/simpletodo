@@ -6,6 +6,7 @@ import { TasksContext } from '@/contexts/Tasks'
 import { EditTask } from './edit-task'
 import { DeleteTask } from './delete-task'
 import { Clock } from 'lucide-react'
+import { DeleteAllTasks } from './delete-all-tasks'
 
 export function Tasks() {
   const { tasks, handleTitleClicked } = useContext(TasksContext)
@@ -65,6 +66,7 @@ export function Tasks() {
           </TabsContent>
           <TabsContent value="complete">
             <div className="flex flex-col gap-3">
+              <DeleteAllTasks />
               {tasks.map((task, index) => {
                 if (task.done === true) {
                   return (

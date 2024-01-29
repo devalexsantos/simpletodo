@@ -7,6 +7,7 @@ interface TasksContextProps {
   handleTitleClicked: (id: string) => void
   handleEditTask: (data: Task) => void
   handleDeleteTask: (data: Task) => void
+  handleDeleteAllFinishedTasks: () => void
 }
 
 export const TasksContext = createContext({} as TasksContextProps)
@@ -56,6 +57,11 @@ export function TasksContextProvider({ children }: { children: ReactNode }) {
     setTasks(newTasks)
   }
 
+  const handleDeleteAllFinishedTasks = () => {
+    const unfinishedTasks = tasks.filter((task) => task.done === false)
+    setTasks(unfinishedTasks)
+  }
+
   return (
     <TasksContext.Provider
       value={{
@@ -64,6 +70,7 @@ export function TasksContextProvider({ children }: { children: ReactNode }) {
         handleTitleClicked,
         handleEditTask,
         handleDeleteTask,
+        handleDeleteAllFinishedTasks,
       }}
     >
       {children}
