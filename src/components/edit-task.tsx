@@ -1,69 +1,86 @@
-import { Edit } from "lucide-react";
-import { Button } from "./ui/button";
-import { Dialog, DialogHeader, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { useContext, useState } from "react";
-import { TasksContext } from "@/contexts/Tasks";
-import { Task } from "@/types/Task";
+import { Edit } from 'lucide-react'
+import { Button } from './ui/button'
+import {
+  Dialog,
+  DialogHeader,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from './ui/dialog'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from './ui/label'
+import { Input } from './ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { useContext, useState } from 'react'
+import { TasksContext } from '@/contexts/Tasks'
+import { Task } from '@/types/Task'
 
-export function EditTask({task}: {task: Task}){
-    const [open, setOpen] = useState(false);
-    const { handleEditTask } = useContext(TasksContext)
+export function EditTask({ task }: { task: Task }) {
+  const [open, setOpen] = useState(false)
+  const { handleEditTask } = useContext(TasksContext)
 
-    const formSchema = z.object({
-        id: z.string(),
-        title: z.string(),
-        time: z.coerce.number().min(5, {
-            message: "A tarefa deve conter no mínimo 05 minutos."
-        }),
-        done: z.boolean()
-    })
+  const formSchema = z.object({
+    id: z.string(),
+    title: z.string(),
+    time: z.coerce.number().min(5, {
+      message: 'A tarefa deve conter no mínimo 05 minutos.',
+    }),
+    done: z.boolean(),
+  })
 
-    type TaskForm = z.infer<typeof formSchema>
+  type TaskForm = z.infer<typeof formSchema>
 
-    const {register, handleSubmit, formState: { errors }} = useForm<TaskForm>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            id: task.id,
-            title: task.title,
-            time: task.time,
-            done: task.done
-        },
-    })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TaskForm>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      id: task.id,
+      title: task.title,
+      time: task.time,
+      done: task.done,
+    },
+  })
 
-    const handleEditForm = (values: Task) => {
-        handleEditTask(values)
-        setOpen(false)
-    }
+  const handleEditForm = (values: Task) => {
+    handleEditTask(values)
+    setOpen(false)
+  }
 
-    return(
-        <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger>
-            <Edit size={18} className="text-muted-foreground hover:text-current"/>
-        </DialogTrigger>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Adicionar Tarefa</DialogTitle>
-                        <DialogDescription>Adicione uma tarefa a ser feita</DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={handleSubmit(handleEditForm)} className="flex flex-col gap-3">
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger>
+        <Edit size={18} className="text-muted-foreground hover:text-current" />
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Adicionar Tarefa</DialogTitle>
+          <DialogDescription>Adicione uma tarefa a ser feita</DialogDescription>
+        </DialogHeader>
+        <form
+          onSubmit={handleSubmit(handleEditForm)}
+          className="flex flex-col gap-3"
+        >
+          <Label htmlFor="task-title">Tempo previsto:</Label>
+          <Textarea id="task-title" {...register('title')} required />
 
-                        <Label htmlFor="task-title">Tempo previsto:</Label>
-                        <Textarea id="task-title" {...register('title')} required/>
-
-                        <Label htmlFor="task-time">Tempo previsto <strong>(em minutos)</strong>:</Label>
-                        <Input id="task-time" type="number" min={5} {...register('time')}/>
-                        <span className="text-red-600">{errors.time && errors.time.message}</span>
-                        <Button className="flex items-center gap-2" type="submit">
-                            Atualizar
-                        </Button>
-                    </form>
-                </DialogContent>
-                </Dialog>
-    )
+          <Label htmlFor="task-time">
+            Tempo previsto <strong>(em minutos)</strong>:
+          </Label>
+          <Input id="task-time" type="number" min={5} {...register('time')} />
+          <span className="text-red-600">
+            {errors.time && errors.time.message}
+          </span>
+          <Button className="flex items-center gap-2" type="submit">
+            Atualizar
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
 }
