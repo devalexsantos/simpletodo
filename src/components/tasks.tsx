@@ -29,7 +29,9 @@ export function Tasks() {
                             return (
                                 <div key={index} className="rounded border flex justify-between items-center p-4 gap-4">
                                     <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(task.id)}/>
-                                    <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(task.id)}>{task.title}</span>
+                                    <div className="flex-1 overflow-x-hidden text-ellipsis">
+                                        <span className={`cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(task.id)}>{task.title}</span>
+                                    </div>
                                     <div className="flex items-center gap-1">
                                         <Clock size={12} className="text-muted-foreground"/>
                                         <span className="text-muted-foreground">{task.time}min</span>
@@ -49,7 +51,9 @@ export function Tasks() {
                                 return (
                                     <div key={index} className="rounded border flex justify-between items-center p-4 gap-4">
                                         <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(task.id)}/>
-                                        <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(task.id)}>{task.title}</span>
+                                        <div className="flex-1 overflow-x-hidden text-ellipsis">
+                                            <span className={`cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(task.id)}>{task.title}</span>
+                                        </div>
                                         <div className="flex items-center gap-1">
                                         <Clock size={12} className="text-muted-foreground"/>
                                         <span className="text-muted-foreground">{task.time}min</span>
