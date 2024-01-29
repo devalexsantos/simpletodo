@@ -26,7 +26,7 @@ export function Tasks() {
                                 <div key={index} className="rounded border flex justify-between items-center p-4 gap-4">
                                     <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(index)}/>
                                     <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(index)}>{task.title}</span>
-                                    <span className="text-muted-foreground">{parseInt(task.time)}min</span>
+                                    <span className="text-muted-foreground">{task.time}min</span>
                                     <Edit size={18} className="text-muted-foreground hover:text-current"/>
                                     <Trash size={18} className="text-muted-foreground hover:text-current"/>
                                 </div>
@@ -43,7 +43,7 @@ export function Tasks() {
                                     <div key={index} className="rounded border flex justify-between items-center p-4 gap-4">
                                         <Checkbox defaultChecked={task.done} checked={task.done} onClick={() =>handleTitleClicked(index)}/>
                                         <span className={`flex-1 cursor-pointer ${task.done && 'line-through text-muted-foreground'}`} onClick={() =>handleTitleClicked(index)}>{task.title}</span>
-                                        <span className="text-muted-foreground">{parseInt(task.time)}min</span>
+                                        <span className="text-muted-foreground">{task.time}min</span>
                                         <Edit size={18} className="text-muted-foreground hover:text-current"/>
                                         <Trash size={18} className="text-muted-foreground hover:text-current"/>
                                     </div>
