@@ -19,7 +19,7 @@ export function Footer() {
         <Github size={22} />
         <a
           className="hover:underline"
-          href="https://github.com/devalexsantos/fastodo"
+          href="https://github.com/devalexsantos/simpletodo"
           target="_blank"
           rel="noreferrer"
         >
