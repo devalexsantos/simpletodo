@@ -14,7 +14,7 @@ export function Tasks() {
     const finishedTasks = tasks.filter(task => task.done === true)
 
     return (
-        <div className="container px-8 flex flex-col gap-8">
+        <div className="container flex-1 px-8 flex flex-col gap-8">
             <AddTasks />
             <div className="w-full">
             <Tabs defaultValue="not-complete" className="w-full">
