@@ -5,6 +5,7 @@ interface TasksContextProps {
     tasks: Task[]
     handleAddTask: (values: Task)=> void
     handleTitleClicked: (index: number)=> void
+    handleEditTask: (task: Task, index: number)=> void
 }
 
 export const TasksContext = createContext({} as TasksContextProps)
@@ -39,8 +40,17 @@ export function TasksContextProvider({children}: {children: ReactNode}) {
         setTasks(updatedTasks);
     }
 
+    const handleEditTask = (task: Task, index: number) => {
+        const updatedTasks = [...tasks];
+        const updatedTask = { ...updatedTasks[index] };
+        updatedTask.title  = task.title;
+        updatedTask.time = task.time;
+        updatedTasks[index] = updatedTask
+        setTasks(updatedTasks)
+    }
+
     return(
-        <TasksContext.Provider value={{tasks, handleAddTask, handleTitleClicked}}>
+        <TasksContext.Provider value={{tasks, handleAddTask, handleTitleClicked, handleEditTask}}>
             {children}
         </TasksContext.Provider>
     )
