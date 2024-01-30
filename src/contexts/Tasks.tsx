@@ -22,7 +22,6 @@ export function TasksContextProvider({ children }: { children: ReactNode }) {
             id: '0',
             title: 'Minha primeira tarefa',
             done: false,
-            time: 15,
           },
         ]
   })
@@ -45,9 +44,7 @@ export function TasksContextProvider({ children }: { children: ReactNode }) {
 
   const handleEditTask = (data: Task) => {
     const newTasks = tasks.map((task) =>
-      task.id === data.id
-        ? { ...task, title: data.title, time: data.time }
-        : task,
+      task.id === data.id ? { ...task, title: data.title } : task,
     )
     setTasks(newTasks)
   }

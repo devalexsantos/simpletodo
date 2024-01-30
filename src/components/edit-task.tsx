@@ -10,7 +10,6 @@ import {
 } from './ui/dialog'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from './ui/label'
-import { Input } from './ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
@@ -25,24 +24,16 @@ export function EditTask({ task }: { task: Task }) {
   const formSchema = z.object({
     id: z.string(),
     title: z.string(),
-    time: z.coerce.number().min(5, {
-      message: 'A tarefa deve conter no mínimo 05 minutos.',
-    }),
     done: z.boolean(),
   })
 
   type TaskForm = z.infer<typeof formSchema>
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TaskForm>({
+  const { register, handleSubmit } = useForm<TaskForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       id: task.id,
       title: task.title,
-      time: task.time,
       done: task.done,
     },
   })
@@ -68,14 +59,6 @@ export function EditTask({ task }: { task: Task }) {
         >
           <Label htmlFor="task-title">Tempo previsto:</Label>
           <Textarea id="task-title" {...register('title')} required />
-
-          <Label htmlFor="task-time">
-            Tempo previsto <strong>(em minutos)</strong>:
-          </Label>
-          <Input id="task-time" type="number" min={5} {...register('time')} />
-          <span className="text-red-600">
-            {errors.time && errors.time.message}
-          </span>
           <Button className="flex items-center gap-2" type="submit">
             Atualizar
           </Button>

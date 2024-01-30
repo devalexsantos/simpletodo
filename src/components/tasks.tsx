@@ -5,7 +5,6 @@ import { AddTasks } from './add-task'
 import { TasksContext } from '@/contexts/Tasks'
 import { EditTask } from './edit-task'
 import { DeleteTask } from './delete-task'
-import { Clock } from 'lucide-react'
 import { DeleteAllTasks } from './delete-all-tasks'
 
 export function Tasks() {
@@ -23,7 +22,7 @@ export function Tasks() {
               A Fazer
             </TabsTrigger>
             <TabsTrigger className="flex-1" value="complete">
-              Concluídas ({finishedTasks.length})
+              Concluídas
             </TabsTrigger>
           </TabsList>
           <TabsContent value="not-complete">
@@ -46,12 +45,6 @@ export function Tasks() {
                           onClick={() => handleTitleClicked(task.id)}
                         >
                           {task.title}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock size={12} className="text-muted-foreground" />
-                        <span className="text-muted-foreground">
-                          {task.time}min
                         </span>
                       </div>
                       <EditTask task={task} />
@@ -85,12 +78,6 @@ export function Tasks() {
                           onClick={() => handleTitleClicked(task.id)}
                         >
                           {task.title}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock size={12} className="text-muted-foreground" />
-                        <span className="text-muted-foreground">
-                          {task.time}min
                         </span>
                       </div>
                       <DeleteTask task={task} />
