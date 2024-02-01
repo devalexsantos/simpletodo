@@ -1,4 +1,3 @@
-import { LucideMessageCircleQuestion, MessageCircleWarning } from 'lucide-react'
 import {
   Card,
   CardContent,
@@ -6,7 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from './ui/card'
-import { Button } from './ui/button'
+import FAQ from './FAQ'
+import { MessageCircleWarning } from 'lucide-react'
 
 export default function Warning() {
   return (
@@ -18,17 +18,12 @@ export default function Warning() {
               <MessageCircleWarning /> Atenção
             </CardTitle>
             <CardDescription>
-              Informação importante sobre o armazenamento dos dados.
+              Os dados mostrados aqui são salvos no <b>Local Storage</b> do
+              navegador e podem ser apagados caso você limpe os dados de
+              navegação.
+              <FAQ />
             </CardDescription>
           </CardHeader>
-          <p className="text-sm mb-3">
-            Os dados mostrados aqui são salvos no <b>Local Storage</b> do
-            navegador e podem ser apagados caso você limpe os dados de
-            navegação.
-          </p>
-          <Button size="sm" className="flex gap-1 items-center">
-            <LucideMessageCircleQuestion size={16} /> FAQ
-          </Button>
         </CardContent>
       </Card>
     </div>
