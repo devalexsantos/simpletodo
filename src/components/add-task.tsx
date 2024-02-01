@@ -8,7 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from './ui/dialog'
-import { Textarea } from '@/components/ui/textarea'
 import { Label } from './ui/label'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -17,6 +16,7 @@ import { useContext, useState } from 'react'
 import { TasksContext } from '@/contexts/Tasks'
 import { Task } from '@/types/Task'
 import { v4 as uuidv4 } from 'uuid'
+import { Input } from './ui/input'
 
 export function AddTasks() {
   const [open, setOpen] = useState(false)
@@ -68,7 +68,7 @@ export function AddTasks() {
             className="flex flex-col gap-3"
           >
             <Label htmlFor="task-title">Descrição:</Label>
-            <Textarea
+            <Input
               id="task-title"
               {...register('title')}
               required
