@@ -2,6 +2,7 @@ import { Footer } from './components/layout/footer'
 import { Header } from './components/layout/header'
 import { Resume } from './components/resume'
 import { Tasks } from './components/tasks'
+import Warning from './components/warning'
 
 export function App() {
   return (
@@ -9,6 +10,7 @@ export function App() {
       <Header />
       <Resume />
       <Tasks />
+      <Warning />
       <Footer />
     </div>
   )
