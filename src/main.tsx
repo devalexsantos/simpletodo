@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from '@/components/theme-provider'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -10,6 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <TasksContextProvider>
         <App />
+        <Analytics />
       </TasksContextProvider>
     </ThemeProvider>
   </React.StrictMode>,
